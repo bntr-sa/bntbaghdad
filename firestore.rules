@@ -1,0 +1,13 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Anyone (even visitors) can read the products shown on the storefront.
+    match /products/{id} {
+      allow read: if true;
+      // Only your admin email may write. This MUST match ADMIN_EMAIL in
+      // public/index.html (and the user you create in Firebase Authentication).
+      allow write: if request.auth != null
+                   && request.auth.token.email == "gsys12759@gmail.com";
+    }
+  }
+}
