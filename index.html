@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<title data-en="Bnt Baghdad Salon" data-ar="صالون بنت بغداد">🌸 Bnt Baghdad Salon</title>
+<meta name="theme-color" content="#2b1b2e" />
+<link rel="manifest" href="manifest.json" />
+<link rel="icon" type="image/png" href="favicon.png" />
+<link rel="apple-touch-icon" href="icon-180.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --gold: #c8a24a;
+    --gold-dark: #a8852f;
+    --plum: #2b1b2e;
+    --plum-soft: #3a273f;
+    --cream: #f7f1e8;
+    --text: #2b1b2e;
+    --muted: #7a6f73;
+    --white: #ffffff;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+  body { font-family: "Poppins", "Cairo", system-ui, sans-serif; color: var(--text); background: var(--cream); line-height: 1.6; }
+  body.lang-ar { font-family: "Cairo", "Poppins", system-ui, sans-serif; }
+
+  .lang-switch { position: fixed; top: 12px; inset-inline-end: 12px; z-index: 200; display: flex; gap: 4px; background: var(--white); border: 1px solid var(--gold); border-radius: 999px; padding: 3px; box-shadow: 0 4px 14px rgba(0,0,0,.12); }
+  .lang-switch button { border: none; background: transparent; color: var(--plum); font-family: inherit; font-weight: 700; font-size: 13px; padding: 6px 14px; border-radius: 999px; cursor: pointer; transition: .2s; }
+  .lang-switch button.active { background: var(--gold); color: var(--white); }
+
+  header { background: linear-gradient(160deg, var(--plum), var(--plum-soft)); color: var(--white); padding: 56px 22px 40px; text-align: center; }
+  .brand { font-size: 30px; font-weight: 700; letter-spacing: .5px; }
+  .brand .dot { color: var(--gold); }
+  .tagline { color: var(--gold); font-size: 16px; margin-top: 4px; font-weight: 600; }
+  .hero-art { width: 100%; max-width: 340px; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 24px; box-shadow: 0 14px 34px rgba(43,27,46,.28); margin: 14px auto 6px; background: var(--plum-soft); }
+  header p { color: #e7dce8; font-size: 14px; margin-top: 8px; }
+  .hero-text p { max-width: 480px; margin-inline: auto; }
+  .cta { margin-top: 20px; display: inline-block; background: var(--gold); color: var(--plum); text-decoration: none; font-weight: 700; padding: 13px 30px; border-radius: 999px; font-size: 15px; transition: .2s; }
+  .cta:hover { background: var(--gold-dark); color: var(--white); }
+
+  .top-nav { background: var(--white); display: none; justify-content: center; gap: 38px; padding: 16px; border-bottom: 1px solid #eee; position: sticky; top: 0; z-index: 50; flex-wrap: wrap; }
+  .top-nav a { text-decoration: none; color: var(--plum); font-weight: 600; font-size: 15px; cursor: pointer; }
+  .top-nav a:hover { color: var(--gold-dark); }
+
+  .bottom-nav { position: fixed; bottom: 0; left: 0; right: 0; background: var(--white); border-top: 1px solid #eee; display: flex; justify-content: space-around; padding: 10px 0; z-index: 150; box-shadow: 0 -4px 14px rgba(0,0,0,.06); }
+  .bottom-nav a { text-decoration: none; color: var(--plum); font-size: 12px; font-weight: 600; display: flex; flex-direction: column; align-items: center; gap: 3px; cursor: pointer; }
+  .bottom-nav a .ni { font-size: 22px; }
+
+  section { padding: 40px 22px; max-width: 1200px; margin: 0 auto; }
+  .section-title { font-size: 24px; font-weight: 700; text-align: center; }
+  .section-sub { text-align: center; color: var(--muted); font-size: 14px; margin: 6px 0 26px; }
+
+  .services { display: grid; grid-template-columns: 1fr; gap: 14px; }
+  .card { background: var(--white); border-radius: 16px; padding: 20px; display: flex; align-items: center; gap: 16px; box-shadow: 0 6px 18px rgba(43,27,46,.08); transition: transform .2s; }
+  .card:hover { transform: translateY(-4px); }
+  .card .ico { font-size: 40px; flex-shrink: 0; }
+  .svc-photo { width: 64px; height: 64px; border-radius: 16px; object-fit: cover; flex-shrink: 0; box-shadow: 0 4px 12px rgba(43,27,46,.14); background: var(--plum-soft); }
+  .card-body h3 { font-size: 18px; }
+  .card-body p { color: var(--muted); font-size: 13px; }
+
+  .about { display: grid; grid-template-columns: 1fr; gap: 18px; align-items: center; }
+  .about .figure { background: linear-gradient(135deg, var(--gold), var(--gold-dark)); border-radius: 18px; height: 200px; display: flex; align-items: center; justify-content: center; font-size: 72px; }
+  img.figure { object-fit: cover; }
+  .about p { color: var(--muted); font-size: 14px; }
+
+  .contact-grid { display: grid; grid-template-columns: 1fr; gap: 14px; text-align: center; }
+  .contact-grid .item { background: var(--white); border-radius: 14px; padding: 20px; box-shadow: 0 6px 18px rgba(43,27,46,.07); }
+  .contact-grid .ico { font-size: 30px; }
+  .contact-grid h4 { margin: 8px 0 4px; font-size: 16px; }
+  .contact-grid p { color: var(--muted); font-size: 14px; }
+
+  footer { text-align: center; color: var(--muted); font-size: 13px; padding: 24px 20px; }
+
+  .phone { direction: ltr; unicode-bidi: isolate; }
+  .phone a, .map-link { color: inherit; text-decoration: none; }
+  .phone a:hover, .map-link:hover { color: var(--gold-dark); text-decoration: underline; }
+
+  .lang-ar-only { display: none; }
+  body.lang-ar .lang-en-only { display: none; }
+  body.lang-ar .lang-ar-only { display: inline; }
+  .block-ar { display: none; }
+  body.lang-ar .block-ar { display: block; }
+  body.lang-ar .block-en { display: none; }
+  .block-en { display: block; }
+
+  /* Products */
+  .products { display: grid; grid-template-columns: 1fr; gap: 16px; }
+  .product { background: var(--white); border-radius: 16px; overflow: hidden; box-shadow: 0 6px 18px rgba(43,27,46,.08); display: flex; flex-direction: column; }
+  .product img { width: 100%; height: 180px; object-fit: cover; background: #eee; }
+  .product .p-body { padding: 16px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
+  .product h3 { font-size: 18px; }
+  .product .p-desc { color: var(--muted); font-size: 13px; flex: 1; }
+  .product .p-price { font-weight: 700; color: var(--plum); font-size: 16px; }
+  .product .p-price span { direction: ltr; unicode-bidi: isolate; display: inline-block; }
+  .order-btn { display: inline-block; text-align: center; background: var(--gold); color: var(--plum); text-decoration: none; font-weight: 700; padding: 10px 16px; border-radius: 999px; font-size: 14px; transition: .2s; }
+  .order-btn:hover { background: var(--gold-dark); color: var(--white); }
+  .product .admin-controls { display: flex; gap: 8px; margin-top: 4px; }
+  .product .admin-controls button { flex: 1; border: 1px solid #ddd; background: #fff; border-radius: 8px; padding: 6px; font-family: inherit; font-size: 13px; cursor: pointer; }
+  .product .admin-controls .del { color: #b3261e; border-color: #f0c4c0; }
+
+  /* Admin panel */
+  .admin-card { background: var(--white); border-radius: 16px; padding: 20px; box-shadow: 0 6px 18px rgba(43,27,46,.08); max-width: 520px; margin: 0 auto; }
+  .admin-card label { display: block; font-size: 13px; font-weight: 600; margin: 12px 0 4px; }
+  .admin-card input, .admin-card textarea { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 8px; font-size: 14px; font-family: inherit; }
+  .admin-card button.add { margin-top: 16px; padding: 12px 20px; border: none; border-radius: 999px; background: var(--gold); color: var(--plum); font-weight: 700; cursor: pointer; font-family: inherit; }
+  .admin-card button.add:hover { background: var(--gold-dark); color: #fff; }
+  .admin-card button.add:disabled { opacity: .6; cursor: default; }
+  .msg { margin-top: 12px; font-size: 14px; }
+  .msg.ok { color: #2e7d32; }
+  .msg.err { color: #b3261e; white-space: pre-wrap; }
+  .admin-list { max-width: 520px; margin: 24px auto 0; }
+  .admin-item { background: #fff; border-radius: 12px; padding: 14px 16px; margin-bottom: 10px; display: flex; align-items: center; gap: 12px; box-shadow: 0 4px 12px rgba(43,27,46,.06); }
+  .admin-item img { width: 56px; height: 56px; object-fit: cover; border-radius: 8px; background: #eee; flex-shrink: 0; }
+  .admin-item .info { flex: 1; }
+  .admin-item .info b { font-size: 15px; }
+  .admin-item .info div { color: #7a6f73; font-size: 13px; }
+  .admin-item button { border: 1px solid #f0c4c0; color: #b3261e; background: #fff; border-radius: 8px; padding: 8px 12px; cursor: pointer; font-family: inherit; }
+
+  /* Login modal */
+  .modal { position: fixed; inset: 0; background: rgba(43,27,46,.55); display: flex; align-items: center; justify-content: center; z-index: 300; padding: 16px; }
+  .modal[hidden] { display: none; }
+  .modal-box { background: #fff; color: var(--plum); padding: 32px; border-radius: 16px; width: 320px; max-width: 100%; box-shadow: 0 10px 30px rgba(0,0,0,.3); }
+  .modal-box h2 { font-size: 20px; margin-bottom: 16px; text-align: center; }
+  .modal-box label { display: block; font-size: 13px; margin: 12px 0 4px; font-weight: 600; }
+  .modal-box input { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 8px; font-size: 14px; }
+  .modal-box button.login { width: 100%; margin-top: 18px; padding: 12px; border: none; border-radius: 999px; background: var(--gold); color: var(--plum); font-weight: 700; font-size: 15px; cursor: pointer; font-family: inherit; }
+  .modal-box button.login:hover { background: var(--gold-dark); color: #fff; }
+  .modal-box .divider { display: flex; align-items: center; gap: 10px; color: var(--muted); font-size: 12px; margin-top: 16px; }
+  .modal-box .divider::before, .modal-box .divider::after { content: ""; flex: 1; height: 1px; background: #ddd; }
+  .modal-box button.google { width: 100%; margin-top: 14px; padding: 11px; border: 1px solid #ccc; border-radius: 999px; background: #fff; color: #2b1b2e; font-weight: 600; font-size: 14px; cursor: pointer; font-family: inherit; display: flex; align-items: center; justify-content: center; gap: 8px; }
+  .modal-box button.google:hover { background: #f5f5f5; }
+  .modal-box button.link { background: none; border: none; color: var(--gold-dark); font-size: 13px; display: block; text-align: center; margin-top: 14px; text-decoration: none; cursor: pointer; font-family: inherit; }
+  .modal-box .err { color: #b3261e; font-size: 13px; margin-top: 12px; text-align: center; }
+
+  @media (min-width: 768px) {
+    .top-nav { display: flex; }
+    .bottom-nav { display: none; }
+    header { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 40px; text-align: start; align-items: center; padding: 64px 48px 70px; }
+    .hero-art { width: 100%; max-width: 440px; margin: 0; }
+    header p { font-size: 16px; margin-top: 18px; }
+    .brand { font-size: 40px; }
+    .tagline { font-size: 18px; }
+    .cta { margin-top: 26px; }
+    section { padding: 70px 48px; }
+    .section-title { font-size: 30px; margin-bottom: 10px; }
+    .section-sub { font-size: 16px; margin-bottom: 44px; }
+    .services { grid-template-columns: repeat(3, 1fr); gap: 26px; }
+    .card { flex-direction: column; text-align: center; padding: 32px 26px; }
+    .card:hover { transform: translateY(-6px); }
+    .card .ico { font-size: 44px; }
+    .services .svc-photo { width: 76px; height: 76px; }
+    .card-body h3 { font-size: 20px; margin: 14px 0 8px; }
+    .card-body p { font-size: 14px; }
+    .about { grid-template-columns: 1fr 1fr; gap: 40px; }
+    .about .figure { height: 320px; font-size: 96px; }
+    .contact-grid { grid-template-columns: repeat(3, 1fr); gap: 26px; }
+    .products { grid-template-columns: repeat(3, 1fr); gap: 26px; }
+  }
+  @media (max-width: 767px) {
+    body { padding-bottom: 64px; }
+    body.lang-ar .card { flex-direction: row-reverse; text-align: start; }
+  }
+</style>
+</head>
+<body class="lang-ar">
+
+  <div class="lang-switch">
+    <button id="btn-en">EN</button>
+    <button id="btn-ar" class="active">ع</button>
+  </div>
+
+  <header>
+    <div class="hero-text">
+      <div class="brand">Bnt<span class="dot">.</span>Baghdad</div>
+      <div class="tagline">
+        <span class="lang-en-only">Beauty inspired by Baghdad</span>
+        <span class="lang-ar-only">جمال مستوحى من بغداد</span>
+      </div>
+      <p>
+        <span class="lang-en-only">A modern salon where Iraqi heritage meets contemporary style. Hair, makeup, skincare and bridal artistry crafted just for you.</span>
+        <span class="lang-ar-only">صالون عصري تلتقي فيه الأصالة العراقية بالأناقة المعاصرة. شعر، مكياج، عناية بالبشرة وتجهيزات العروس بلمسة خاصة بك.</span>
+      </p>
+      <a class="cta" href="#contact">
+        <span class="lang-en-only">Contact us</span>
+        <span class="lang-ar-only">تواصلي معنا</span>
+      </a>
+    </div>
+    <img class="hero-art" src="images/hero.jpg" alt="Bnt Baghdad Salon" onerror="this.style.display='none'" />
+  </header>
+
+  <nav class="top-nav">
+    <a data-section="services"><span class="lang-en-only">Services</span><span class="lang-ar-only">خدماتنا</span></a>
+    <a data-section="products"><span class="lang-en-only">Products</span><span class="lang-ar-only">منتجاتنا</span></a>
+    <a data-section="about"><span class="lang-en-only">About</span><span class="lang-ar-only">من نحن</span></a>
+    <a data-section="contact"><span class="lang-en-only">Contact</span><span class="lang-ar-only">تواصل</span></a>
+    <a id="nav-admin"><span class="lang-en-only">Admin</span><span class="lang-ar-only">الإدارة</span></a>
+  </nav>
+
+  <section id="services">
+    <h2 class="section-title">
+      <span class="lang-en-only">Our Services</span>
+      <span class="lang-ar-only">خدماتنا</span>
+    </h2>
+    <p class="section-sub">
+      <span class="lang-en-only">Everything you need to look and feel your best</span>
+      <span class="lang-ar-only">كل ما تحتاجينه لإطلالة تبهركِ</span>
+    </p>
+    <div class="services">
+      <div class="card"><img class="svc-photo" src="images/hair.jpg" alt="Hair Styling" onerror="this.style.display='none'" /><div class="card-body"><h3><span class="lang-en-only">Hair Styling</span><span class="lang-ar-only">تصفيف الشعر</span></h3><p><span class="lang-en-only">Cuts, color & treatments</span><span class="lang-ar-only">قص، صبغة وعناية</span></p></div></div>
+      <div class="card"><img class="svc-photo" src="images/makeup.jpg" alt="Makeup" onerror="this.style.display='none'" /><div class="card-body"><h3><span class="lang-en-only">Makeup</span><span class="lang-ar-only">مكياج</span></h3><p><span class="lang-en-only">Day & evening looks</span><span class="lang-ar-only">إطلالات نهارية وسهرة</span></p></div></div>
+      <div class="card"><img class="svc-photo" src="images/nails.jpg" alt="Nails" onerror="this.style.display='none'" /><div class="card-body"><h3><span class="lang-en-only">Nails</span><span class="lang-ar-only">أظافر</span></h3><p><span class="lang-en-only">Manicure & pedicure</span><span class="lang-ar-only">مناكير وباديكير</span></p></div></div>
+      <div class="card"><img class="svc-photo" src="images/skincare.jpg" alt="Skincare" onerror="this.style.display='none'" /><div class="card-body"><h3><span class="lang-en-only">Skincare</span><span class="lang-ar-only">البشرة</span></h3><p><span class="lang-en-only">Facials & peels</span><span class="lang-ar-only">تنظيف وتقشير</span></p></div></div>
+      <div class="card"><img class="svc-photo" src="images/bridal.jpg" alt="Bridal" onerror="this.style.display='none'" /><div class="card-body"><h3><span class="lang-en-only">Bridal</span><span class="lang-ar-only">العروس</span></h3><p><span class="lang-en-only">Full bridal packages</span><span class="lang-ar-only">باقات العروس الكاملة</span></p></div></div>
+      <div class="card"><img class="svc-photo" src="images/spa.jpg" alt="Spa" onerror="this.style.display='none'" /><div class="card-body"><h3><span class="lang-en-only">Spa</span><span class="lang-ar-only">سبا</span></h3><p><span class="lang-en-only">Relax & renew</span><span class="lang-ar-only">استرخاء وتجديد</span></p></div></div>
+    </div>
+  </section>
+
+  <section id="products">
+    <h2 class="section-title">
+      <span class="lang-en-only">Our Products</span>
+      <span class="lang-ar-only">منتجاتنا</span>
+    </h2>
+    <p class="section-sub">
+      <span class="lang-en-only">Browse our selection and order via WhatsApp</span>
+      <span class="lang-ar-only">تصفحي منتجاتنا واطلبي عبر واتساب</span>
+    </p>
+    <div class="products" id="products-grid">
+      <p style="text-align:center;color:var(--muted)">…</p>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="about">
+      <img class="figure" src="images/about.jpg" alt="About Bnt Baghdad" onerror="this.style.display='none'" />
+      <div>
+        <h2 class="section-title" style="text-align:start">
+          <span class="lang-en-only">About Bnt Baghdad</span>
+          <span class="lang-ar-only">عن بنت بغداد</span>
+        </h2>
+        <p>
+          <span class="lang-en-only">Founded in the heart of Baghdad, our salon brings together a passionate team of stylists dedicated to celebrating your natural beauty with a touch of Iraqi elegance.</span>
+          <span class="lang-ar-only">تأسس صالوننا في قلب بغداد، ويضم فريقاً شغوفاً من المختصات اللواتي يبرزن جمالكِ الطبيعي بلمسة عراقية أصيلة.</span>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2 class="section-title">
+      <span class="lang-en-only">Visit Us</span>
+      <span class="lang-ar-only">زورينا</span>
+    </h2>
+    <p class="section-sub">
+      <span class="lang-en-only">We'd love to welcome you</span>
+      <span class="lang-ar-only">يسعدنا استقبالكِ</span>
+    </p>
+    <div class="contact-grid">
+      <div class="item"><div class="ico">📍</div><h4><span class="lang-en-only">Location</span><span class="lang-ar-only">العنوان</span></h4><p><a class="map-link" href="https://maps.app.goo.gl/tJo7YMXSyp8tBKrL9"><span class="lang-en-only">Baghdad, Abu Ghraib, Hay Al-Sadiq, 20th Street</span><span class="lang-ar-only">بغداد، أبو غريب، حي الصديق، شارع عشرين</span></a></p></div>
+      <div class="item"><div class="ico">📞</div><h4><span class="lang-en-only">Phone</span><span class="lang-ar-only">الهاتف</span></h4><p class="phone"><a href="https://wa.me/9647735128002">+964 773 512 8002</a></p></div>
+      <div class="item"><div class="ico">📅</div><h4><span class="lang-en-only">Appointments</span><span class="lang-ar-only">الحجز</span></h4><p><span class="lang-en-only">By appointment only — message the number and I'll confirm a time based on my availability and what you need.</span><span class="lang-ar-only">بالحجز المسبق فقط — تواصلي عبر الرقم وسأحدد الوقت المناسب حسب انشغالي وما تحتاجين.</span></p></div>
+    </div>
+    <p style="text-align:center;margin-top:18px">
+      <a class="cta" id="contact-admin"><span class="lang-en-only">Admin Login</span><span class="lang-ar-only">دخول الإدارة</span></a>
+    </p>
+  </section>
+
+  <!-- Admin panel: only visible after signing in as the configured admin email -->
+  <section id="admin" hidden>
+    <h2 class="section-title">
+      <span class="lang-en-only">Manage Products</span>
+      <span class="lang-ar-only">إدارة المنتجات</span>
+    </h2>
+    <p class="section-sub">
+      <span class="lang-en-only">Add products that appear on the storefront</span>
+      <span class="lang-ar-only">أضيفي منتجات تظهر في المتجر</span>
+    </p>
+    <div class="admin-card">
+      <form id="add-form">
+        <label><span class="lang-en-only">Name *</span><span class="lang-ar-only">الاسم *</span></label>
+        <input name="name" required />
+        <label><span class="lang-en-only">Description</span><span class="lang-ar-only">الوصف</span></label>
+        <textarea name="description" rows="3"></textarea>
+        <label><span class="lang-en-only">Price (IQD) *</span><span class="lang-ar-only">السعر (د.ع) *</span></label>
+        <input name="price" type="number" step="0.01" min="0" required />
+        <label><span class="lang-en-only">Image URL</span><span class="lang-ar-only">رابط الصورة</span></label>
+        <input name="image" placeholder="https://…" />
+        <button class="add" type="submit"><span class="lang-en-only">Add product</span><span class="lang-ar-only">أضف منتج</span></button>
+        <div class="msg" id="add-msg"></div>
+      </form>
+    </div>
+    <div class="admin-list" id="admin-list"></div>
+  </section>
+
+  <footer>
+    <span class="lang-en-only">© Bnt Baghdad Salon — All rights reserved.</span>
+    <span class="lang-ar-only">© صالون بنت بغداد — جميع الحقوق محفوظة.</span>
+  </footer>
+
+  <nav class="bottom-nav">
+    <a data-section="services"><span class="ni">💇</span><span class="lang-en-only">Services</span><span class="lang-ar-only">خدمات</span></a>
+    <a data-section="products"><span class="ni">🛍️</span><span class="lang-en-only">Products</span><span class="lang-ar-only">منتجات</span></a>
+    <a data-section="about"><span class="ni">🌺</span><span class="lang-en-only">About</span><span class="lang-ar-only">من نحن</span></a>
+    <a data-section="contact"><span class="ni">📍</span><span class="lang-en-only">Contact</span><span class="lang-ar-only">تواصل</span></a>
+    <a id="nav-admin-mobile"><span class="ni">🔐</span><span class="lang-en-only">Admin</span><span class="lang-ar-only">إدارة</span></a>
+  </nav>
+
+  <!-- Login modal -->
+  <div id="login-modal" class="modal" hidden>
+    <div class="modal-box">
+      <h2><span class="lang-en-only">Admin Login</span><span class="lang-ar-only">دخول الإدارة</span></h2>
+      <form id="login-form">
+        <label>Email</label>
+        <input name="email" type="email" autocomplete="username" required />
+        <label>Password</label>
+        <input name="password" type="password" autocomplete="current-password" required />
+        <button class="login" type="submit"><span class="lang-en-only">Login</span><span class="lang-ar-only">دخول</span></button>
+      </form>
+      <div class="divider"><span class="lang-en-only">or</span><span class="lang-ar-only">أو</span></div>
+      <button class="google" id="login-google" type="button">
+        <span class="lang-en-only">Sign in with Google</span>
+        <span class="lang-ar-only">سجّل الدخول عبر جوجل</span>
+      </button>
+      <p class="err" id="login-err" hidden></p>
+      <button class="link" id="login-close"><span class="lang-en-only">← Back to site</span><span class="lang-ar-only">← العودة للموقع</span></button>
+    </div>
+  </div>
+
+  <!-- Firebase (modular SDK via CDN — no build step). -->
+  <script type="module">
+    // ── Import the functions you need from the SDKs you need ──────────────
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-analytics.js";
+    import {
+      getFirestore, collection, addDoc, deleteDoc, doc,
+      getDocs, query, orderBy, serverTimestamp
+    } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+    import {
+      getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut,
+      GoogleAuthProvider, signInWithPopup
+    } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyDCVTY96PC4-H34Azz8pwgzR_Rz6XDr-yc",
+      authDomain: "bnt-baghdad.firebaseapp.com",
+      databaseURL: "https://bnt-baghdad-default-rtdb.europe-west1.firebasedatabase.app",
+      projectId: "bnt-baghdad",
+      storageBucket: "bnt-baghdad.firebasestorage.app",
+      messagingSenderId: "3737016663",
+      appId: "1:3737016663:web:e5bfd3b41cc56a85c28612",
+      measurementId: "G-3K4TD674TG"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+
+    const db = getFirestore(app);
+    const auth = getAuth(app);
+
+    // WhatsApp number shown on the storefront (international format, no "+").
+    const STORE_PHONE = "9647735128002";
+    // Only this email may manage products. It MUST match the user you create in
+    // Firebase Authentication AND the email in firestore.rules.
+    const ADMIN_EMAIL = "gsys12759@gmail.com";
+
+    // ── Language toggle ──────────────────────────────────────────────────
+    function setLang(lang) {
+      const body = document.body;
+      const titleEl = document.querySelector('title');
+      const flower = '🌸 ';
+      if (lang === 'ar') {
+        body.classList.add('lang-ar');
+        body.classList.remove('lang-en');
+        document.documentElement.lang = 'ar';
+        document.documentElement.dir = 'rtl';
+        document.getElementById('btn-ar').classList.add('active');
+        document.getElementById('btn-en').classList.remove('active');
+        document.title = flower + (titleEl.dataset.ar || 'صالون بنت بغداد');
+      } else {
+        body.classList.add('lang-en');
+        body.classList.remove('lang-ar');
+        document.documentElement.lang = 'en';
+        document.documentElement.dir = 'ltr';
+        document.getElementById('btn-en').classList.add('active');
+        document.getElementById('btn-ar').classList.remove('active');
+        document.title = flower + (titleEl.dataset.en || 'Bnt Baghdad Salon');
+      }
+    }
+    const sys = (navigator.language || navigator.userLanguage || 'ar').toLowerCase();
+    setLang(sys.startsWith('en') ? 'en' : 'ar');
+    document.getElementById('btn-en').addEventListener('click', () => setLang('en'));
+    document.getElementById('btn-ar').addEventListener('click', () => setLang('ar'));
+
+    // Smooth-scroll for nav links (single page).
+    document.querySelectorAll('[data-section]').forEach(a => {
+      a.addEventListener('click', (e) => {
+        e.preventDefault();
+        const el = document.getElementById(a.dataset.section);
+        if (el) el.scrollIntoView({ behavior: 'smooth' });
+      });
+    });
+
+    // ── Helpers ──────────────────────────────────────────────────────────
+    function escapeHtml(s) {
+      return String(s == null ? '' : s)
+        .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+    }
+    function orderLink(name) {
+      const text = encodeURIComponent('Hello, I would like to order: ' + name);
+      return 'https://wa.me/' + STORE_PHONE + '?text=' + text;
+    }
+
+    // ── Products (Firestore) ─────────────────────────────────────────────
+    const grid = document.getElementById('products-grid');
+    let isAdmin = false;
+
+    function renderProducts(products) {
+      if (!products.length) {
+        grid.innerHTML = '<p style="text-align:center;color:var(--muted)">No products yet.</p>';
+        return;
+      }
+      grid.innerHTML = products.map(p => {
+        const img = p.image
+          ? `<img src="${escapeHtml(p.image)}" alt="${escapeHtml(p.name)}" />`
+          : `<img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3C/svg%3E" alt="" />`;
+        const controls = isAdmin
+          ? `<div class="admin-controls">
+               <button class="del" data-del="${p.id}">Delete</button>
+             </div>`
+          : '';
+        return `
+          <div class="product">
+            ${img}
+            <div class="p-body">
+              <h3>${escapeHtml(p.name)}</h3>
+              <div class="p-desc">${escapeHtml(p.description)}</div>
+              <div class="p-price"><span>${escapeHtml(p.price)} IQD</span></div>
+              <a class="order-btn" href="${orderLink(p.name)}" target="_blank" rel="noopener">
+                <span class="lang-en-only">Order on WhatsApp</span>
+                <span class="lang-ar-only">اطلبي عبر واتساب</span>
+              </a>
+              ${controls}
+            </div>
+          </div>`;
+      }).join('');
+
+      if (isAdmin) {
+        grid.querySelectorAll('[data-del]').forEach(btn => {
+          btn.addEventListener('click', async () => {
+            if (!confirm('Delete this product?')) return;
+            try {
+              await deleteDoc(doc(db, 'products', btn.dataset.del));
+              loadProducts();
+            } catch (e) {
+              alert('Delete failed: ' + (e && e.message ? e.message : e));
+            }
+          });
+        });
+      }
+    }
+
+    async function loadProducts() {
+      grid.innerHTML = '<p style="text-align:center;color:var(--muted)">…</p>';
+      try {
+        const q = query(collection(db, 'products'), orderBy('createdAt', 'desc'));
+        const snap = await getDocs(q);
+        const products = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+        renderProducts(products);
+      } catch (e) {
+        console.error('loadProducts failed:', e);
+        grid.innerHTML = '<p style="text-align:center;color:var(--muted)">Could not load products. Check your Firestore rules &amp; firebaseConfig in this file.</p>';
+      }
+    }
+
+    // ── Admin list + add/delete ──────────────────────────────────────────
+    const adminSection = document.getElementById('admin');
+    const adminList = document.getElementById('admin-list');
+    const addForm = document.getElementById('add-form');
+    const addMsg = document.getElementById('add-msg');
+
+    async function loadAdminList() {
+      try {
+        const q = query(collection(db, 'products'), orderBy('createdAt', 'desc'));
+        const snap = await getDocs(q);
+        const items = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+        if (!items.length) { adminList.innerHTML = '<p style="color:#7a6f73">No products yet.</p>'; return; }
+        adminList.innerHTML = items.map(p => `
+          <div class="admin-item">
+            ${p.image ? `<img src="${escapeHtml(p.image)}" alt="" />` : ''}
+            <div class="info"><b>${escapeHtml(p.name)}</b><div>${escapeHtml(p.price)} IQD</div></div>
+            <button data-del="${p.id}">Delete</button>
+          </div>`).join('');
+        adminList.querySelectorAll('[data-del]').forEach(b => {
+          b.addEventListener('click', async () => {
+            if (!confirm('Delete this product?')) return;
+            try {
+              await deleteDoc(doc(db, 'products', b.dataset.del));
+              loadAdminList();
+            } catch (e) { alert('Delete failed: ' + (e && e.message ? e.message : e)); }
+          });
+        });
+      } catch (e) {
+        adminList.innerHTML = '<p style="color:#b3261e">Could not load products. Check Firestore rules.</p>';
+      }
+    }
+
+    addForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      addMsg.textContent = '';
+      addMsg.className = 'msg';
+      const data = Object.fromEntries(new FormData(addForm).entries());
+      const btn = addForm.querySelector('button');
+      btn.disabled = true;
+      try {
+        await addDoc(collection(db, 'products'), {
+          name: data.name,
+          description: data.description || '',
+          price: data.price,
+          image: data.image || '',
+          createdAt: serverTimestamp()
+        });
+        addMsg.textContent = 'Product added ✓';
+        addMsg.className = 'msg ok';
+        addForm.reset();
+        loadProducts();
+        loadAdminList();
+      } catch (err) {
+        // The most common cause here is Firestore rules denying writes.
+        // See firestore.rules + README — the admin email must match.
+        const detail = (err && err.message) ? err.message : String(err);
+        addMsg.textContent = 'Error: ' + detail;
+        addMsg.className = 'msg err';
+        console.error('addDoc failed:', err);
+      } finally {
+        btn.disabled = false;
+      }
+    });
+
+    // ── Login / logout (Firebase Auth) ───────────────────────────────────
+    const loginModal = document.getElementById('login-modal');
+    const loginForm = document.getElementById('login-form');
+    const loginErr = document.getElementById('login-err');
+    const navAdmin = document.getElementById('nav-admin');
+    const navAdminMobile = document.getElementById('nav-admin-mobile');
+    const contactAdmin = document.getElementById('contact-admin');
+
+    function openLogin() { loginModal.hidden = false; loginErr.hidden = true; }
+    function closeLogin() { loginModal.hidden = true; loginForm.reset(); }
+    function showAdminUI() {
+      navAdmin.innerHTML = '<span class="lang-en-only">Logout</span><span class="lang-ar-only">خروج</span>';
+      navAdminMobile.innerHTML = '<span class="ni">🔓</span><span class="lang-en-only">Logout</span><span class="lang-ar-only">خروج</span>';
+      contactAdmin.innerHTML = '<span class="lang-en-only">Manage Products</span><span class="lang-ar-only">إدارة المنتجات</span>';
+    }
+    function showLoginUI() {
+      navAdmin.innerHTML = '<span class="lang-en-only">Admin</span><span class="lang-ar-only">الإدارة</span>';
+      navAdminMobile.innerHTML = '<span class="ni">🔐</span><span class="lang-en-only">Admin</span><span class="lang-ar-only">إدارة</span>';
+      contactAdmin.innerHTML = '<span class="lang-en-only">Admin Login</span><span class="lang-ar-only">دخول الإدارة</span>';
+    }
+
+    function adminEntry(e) {
+      e.preventDefault();
+      if (isAdmin) { signOut(auth); }
+      else { openLogin(); }
+    }
+    navAdmin.addEventListener('click', adminEntry);
+    navAdminMobile.addEventListener('click', adminEntry);
+    contactAdmin.addEventListener('click', adminEntry);
+    document.getElementById('login-close').addEventListener('click', closeLogin);
+
+    loginForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      loginErr.hidden = true;
+      try {
+        await signInWithEmailAndPassword(auth, loginForm.email.value, loginForm.password.value);
+        closeLogin();
+      } catch (e) {
+        loginErr.hidden = false;
+        loginErr.textContent = 'Wrong email or password.';
+      }
+    });
+
+    // Sign in with Google (popup). Becomes admin only if the Google
+    // account's email equals ADMIN_EMAIL.
+    const googleBtn = document.getElementById('login-google');
+    const googleProvider = new GoogleAuthProvider();
+    googleBtn.addEventListener('click', async () => {
+      loginErr.hidden = true;
+      try {
+        await signInWithPopup(auth, googleProvider);
+        closeLogin();
+      } catch (e) {
+        loginErr.hidden = false;
+        loginErr.textContent = 'Google sign-in failed. Try again.';
+      }
+    });
+
+    // ── Auth state drives the admin UI ───────────────────────────────────
+    onAuthStateChanged(auth, (user) => {
+      isAdmin = !!(user && user.email && user.email.toLowerCase() === ADMIN_EMAIL.toLowerCase());
+      if (isAdmin) {
+        adminSection.hidden = false;
+        showAdminUI();
+        loadAdminList();
+      } else {
+        adminSection.hidden = true;
+        showLoginUI();
+      }
+      loadProducts();
+    });
+
+    // ── PWA service worker ───────────────────────────────────────────────
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('sw.js').catch(() => {});
+      });
+    }
+  </script>
+</body>
+</html>
